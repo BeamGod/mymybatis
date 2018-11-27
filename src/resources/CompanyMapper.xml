@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper nameSpace="com.mymybatis.mapper.CompanyMapper">
+    <select id="getCompanyById" resultType ="com.mymybatis.pojo.Company">
+        select * from company where id = ?
+    </select>
+</mapper>

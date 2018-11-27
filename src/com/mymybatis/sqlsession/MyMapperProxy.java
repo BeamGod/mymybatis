@@ -23,8 +23,9 @@ public class MyMapperProxy implements InvocationHandler{
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		// TODO Auto-generated method stub
-		MapperBean readMapper = myConfiguration.readMapper("resources/UserMapper.xml");
-		//是否是mxl文件对应的接口
+		//MapperBean readMapper = myConfiguration.readMapper("resources/UserMapper.xml");
+		MapperBean readMapper = myConfiguration.readMapper();
+		//是否是xml文件对应的接口
 		if(!method.getDeclaringClass().getName().equals(readMapper.getInterfaceName())){
 			return null;
 		}
@@ -33,7 +34,7 @@ public class MyMapperProxy implements InvocationHandler{
 			for(Function function : list) {
 				//看id是否和接口的方法名一样
 				if(method.getName().equals(function.getFuncName())){
-					return mySqlsession.selectOne(function.getSql(), String.valueOf(args[0]));
+					return mySqlsession.selectOne(function.getSql(), String.valueOf(args[0]),function.getResultType().getClass());
 				}
 			}
 		}

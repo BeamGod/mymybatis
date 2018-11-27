@@ -6,10 +6,17 @@ public class User {
     private String username;
     private String password;
     
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+    private String myTest;
+    
+    
+    
+	public String getMyTest() {
+		return myTest;
 	}
+	public void setMyTest(String myTest) {
+		this.myTest = myTest;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -28,6 +35,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password="
+				+ password + ", myTest=" + myTest + "]";
+	}
     
+	
 
 }

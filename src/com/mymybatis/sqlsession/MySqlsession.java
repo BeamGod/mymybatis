@@ -2,14 +2,17 @@ package com.mymybatis.sqlsession;
 
 import java.lang.reflect.Proxy;
 
+import com.mymybatis.pojo.User;
+
 public class MySqlsession {
 	
-	private Excutor excutor = new  MyExcutor();
+	private Excutor excutor  ;
 	
-	private MyConfiguration myConfiguration = new MyConfiguration();
+	private MyConfiguration myConfiguration ;
 	
-	public <T> T selectOne(String statement,Object parameter){
-		return excutor.query(statement, parameter);
+	
+	public <T> T selectOne(String statement,Object parameter,Class clzz){
+		return excutor.query(statement, parameter,clzz);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -19,6 +22,16 @@ public class MySqlsession {
 				new MyMapperProxy(myConfiguration,this));
 		
 	}
+
+	public MySqlsession(Excutor excutor,MyConfiguration myConfiguration) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.excutor = excutor;
+		this.myConfiguration = myConfiguration;
+	}
+	
+	
+	
 	
 
 }

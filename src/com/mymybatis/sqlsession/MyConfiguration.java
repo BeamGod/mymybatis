@@ -30,8 +30,13 @@ import java.util.List;
 public class MyConfiguration {
 	private static ClassLoader loader = ClassLoader.getSystemClassLoader();
 	
+	public String xmlPath = "";
+	
+	public String configXmlPath = "";
+	
 	//读取xml的信息并处理
-	public Connection build(String resource){
+	public Connection build(){
+		String resource = this.configXmlPath;
 		try {
 			InputStream stream = loader.getResourceAsStream(resource);
 			SAXReader reader = new SAXReader();
@@ -90,7 +95,8 @@ public class MyConfiguration {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public MapperBean readMapper(String path){
+	public MapperBean readMapper(){
+		String path = this.xmlPath;
 		MapperBean mapper = new MapperBean();
 		try {
 			InputStream stream = loader.getResourceAsStream(path);
@@ -131,4 +137,15 @@ public class MyConfiguration {
 		return mapper;
 	}
 
+	public MyConfiguration(String configXmlPath,String xmlPath) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.xmlPath = xmlPath;
+		this.configXmlPath = configXmlPath;
+	}
+	
+	
+
+	
+	
 }
